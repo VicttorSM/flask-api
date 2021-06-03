@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Upload Signatures</title>
+</head>
+<body>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+
+            <h1>Envie assinaturas verdadeiras e falsas para o treinamento da rede neural</h1>
+            <hr>
+
+            <form action="/upload-image" method="POST" enctype="multipart/form-data">
+
+
+                <div class="form-group">
+
+                    <div class="custom-input">
+                        <label>Digite o nome da pessoa</label>
+                        <input type="text" name="name" id="name" maxlength="60">
+                    </div>
+
+                    <br>
+
+                    <div class="custom-input">
+                        <label>Digite o CPF da pessoa</label>
+                        <input type="number" name="cpf" id="cpf" maxlength="11">
+                    </div>
+
+                    <br>
+                    <label>Selecione as assinaturas verdadeiras</label>
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" name="original_signatures" id="original_signatures"
+                               multiple="">
+                        <!--            <label class="custom-file-label" for="original_signatures">Select image...</label>-->
+                    </div>
+                    <!--        </div>-->
+
+
+                    <!--        <div class="form-group">-->
+                    <br>
+                    <label>Selecione as assinaturas falsas</label>
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" name="false_signatures" id="false_signatures"
+                               multiple="">
+                        <!--            <label class="custom-file-label" for="false_signatures">Select image...</label>-->
+                    </div>
+                </div>
+
+                <br>
+                <button type="submit" class="btn btn-primary">Iniciar o Treinamento</button>
+
+            </form>
+
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

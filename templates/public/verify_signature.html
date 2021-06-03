@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Select Person</title>
+</head>
+<body>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+
+            <h1>Verifique a autenticidade de uma assinatura</h1>
+            <hr>
+            <form action="/verify-signature" method="POST" enctype="multipart/form-data">
+
+                <!--        <div class="form-group">-->
+                <!--        <label>Digite o nome da pessoa</label>-->
+                <!--        <input type="text" name="name" id="name" maxlength="60">-->
+
+                <div>
+                    <label>Digite o CPF da pessoa</label>
+                    <input type="number" name="cpf" id="cpf" maxlength="11">
+                </div>
+                <br>
+
+                <label>Selecione a assinatura que deseja verificar</label>
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" name="signature" id="signature">
+                    <!--            <label class="custom-file-label" for="original_signatures">Select image...</label>-->
+                </div>
+                <br>
+
+                <button type="submit" class="btn btn-primary">Verificar</button>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
