@@ -1,48 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Upload Signatures</title>
-</head>
-<body>
-
-
+{% extends "base.html" %}
+{% block title %}Upload Image{% endblock %}
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/upload_image.css') }}">
 <div class="container">
     <div class="row">
         <div class="col">
 
-            <h1>Envie assinaturas verdadeiras e falsas para o treinamento da rede neural</h1>
+            <h1>Carregue assinaturas para o treinamento da rede neural</h1>
             <hr>
-
             <form action="/upload-image" method="POST" enctype="multipart/form-data">
 
 
                 <div class="form-group">
+                    <label for="name">Digite o nome do dono da assinatura</label>
+                    <input type="text" name="name" id="name" class="form-control" placeholder="Digite o nome completo"
+                           maxlength="60">
+                </div>
+                <br>
 
-                    <div class="custom-input">
-                        <label>Digite o nome da pessoa</label>
-                        <input type="text" name="name" id="name" maxlength="60">
-                    </div>
-
-                    <br>
-
+                <div class="form-group">
                     <div class="custom-input">
                         <label>Digite o CPF da pessoa</label>
-                        <input type="number" name="cpf" id="cpf" maxlength="11">
+                        <input type="number" name="cpf" id="cpf" class="form-control" placeholder="Digite o CPF"
+                               maxlength="11">
+                        <small id="cpfHelp" class="form-text text-muted">Digite apenas números</small>
                     </div>
+                </div>
 
-                    <br>
+                <br>
+                <div class="form-group">
                     <label>Selecione as assinaturas verdadeiras</label>
                     <div class="custom-file">
-                        <input type="file" class="custom-file-input" name="original_signatures" id="original_signatures"
+                        <input type="file" class="form-control-file" name="original_signatures"
+                               id="original_signatures"
                                multiple="">
-                        <!--            <label class="custom-file-label" for="original_signatures">Select image...</label>-->
                     </div>
-                    <!--        </div>-->
+                </div>
+                <!--        </div>-->
 
 
-                    <!--        <div class="form-group">-->
-                    <br>
+                <!--        <div class="form-group">-->
+                <br>
+                <div class="form-group">
                     <label>Selecione as assinaturas falsas</label>
                     <div class="custom-file">
                         <input type="file" class="custom-file-input" name="false_signatures" id="false_signatures"
@@ -59,6 +58,4 @@
         </div>
     </div>
 </div>
-
-</body>
-</html>
+{% endblock %}

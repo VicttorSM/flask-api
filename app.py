@@ -122,6 +122,7 @@ def verify_signature():
 
     return render_template("public/verify_signature.html")
 
+
 @app.route('/person', methods=['GET'])
 def get_people():
     all_people = Person.query.all()
@@ -146,36 +147,6 @@ def post_people():
     person_data = request.get_json()
     create_object(Person(name=person_data['name'], cpf=person_data['cpf']))
     return custom_response('Person added successfully', 200)
-
-
-# @app.route('/user', methods=['POST'])
-# def post_user():
-#     user_data = request.get_json()
-#
-#     user = User(name=user_data['name'],
-#                 username=user_data['username'],
-#                 hash_password=user_data['hash_password'],
-#                 email=user_data['email'],
-#                 registered_people=user_data['registered_people'])
-#     db.session.add(user)
-#     db.session.commit()
-#     return custom_response('User added successfully', 200)
-
-
-@app.route('/neuralnetwork', methods=['GET'])
-def test_nn():
-    pessoa = 2
-    run_neural_network('C:/Users/victt/OneDrive/Documents/Trabalhos/TCC 2/Imagens UTSig/{}'.format(pessoa),
-                       'C:/Users/victt/OneDrive/Documents/Trabalhos/TCC 2/Logs UTSig/{}'.format(pessoa))
-
-
-# @app.route('/person/<id>/signature', methods=['POST'])
-# def add_signature(id):
-#     signature_data = request.get_json()
-#     person = Person.query.filter_by(id=id).first()
-#     person.signatures.append(Signature(identification_name=signature_data['identification_name']))
-#     db.session.commit()
-#     return custom_response('Signature added successfully', 200)
 
 
 def custom_response(message, status_code):

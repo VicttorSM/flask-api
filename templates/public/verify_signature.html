@@ -1,12 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Select Person</title>
-</head>
-<body>
-
-
+{% extends "base.html" %}
+{% block title %}Verify Signature{% endblock %}
+{% block content %}
 <div class="container">
     <div class="row">
         <div class="col">
@@ -15,13 +9,13 @@
             <hr>
             <form action="/verify-signature" method="POST" enctype="multipart/form-data">
 
-                <!--        <div class="form-group">-->
-                <!--        <label>Digite o nome da pessoa</label>-->
-                <!--        <input type="text" name="name" id="name" maxlength="60">-->
-
-                <div>
-                    <label>Digite o CPF da pessoa</label>
-                    <input type="number" name="cpf" id="cpf" maxlength="11">
+                <div class="form-group">
+                    <div class="custom-input">
+                        <label>Digite o CPF da pessoa</label>
+                        <input type="number" name="cpf" id="cpf" class="form-control" placeholder="Digite o CPF"
+                               maxlength="11">
+                        <small id="cpfHelp" class="form-text text-muted">Digite apenas números</small>
+                    </div>
                 </div>
                 <br>
 
@@ -38,6 +32,4 @@
         </div>
     </div>
 </div>
-
-</body>
-</html>
+{% endblock %}
