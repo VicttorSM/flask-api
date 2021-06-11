@@ -1,5 +1,6 @@
 import os
 
+from time import time
 from flask import Flask, jsonify, request, make_response, redirect, render_template
 from flask_sqlalchemy import SQLAlchemy
 from pathlib import Path
@@ -70,7 +71,7 @@ def upload_image():
             for false_signature in false_signatures:
                 false_signature.save(os.path.join(false_file_directory, false_signature.filename))
 
-            training_session = run_neural_network(training_session, qtd_epochs=10)
+            training_session = run_neural_network(training_session)
             print('Trying to update session')
             db.session.merge(training_session)
             db.session.commit()
@@ -112,13 +113,22 @@ def verify_signature():
 
             signature.save(os.path.join(person.training_session.directory, signature.filename))
 
+            start_time = time()
             label, probability = verify_signature_authenticity(person.training_session,
                                           os.path.join(person.training_session.directory, signature.filename))
+            end_time = time()
+            delta_time = end_time - start_time
+            print('Tempo para verificar a assinatura: {:.2f} segundos'.format(delta_time))
 
             print('Label: {}'.format(label))
             print('Probability: {}'.format(probability))
-
-            return redirect(request.url)
+            if label == 0:
+                label = 'Falso'
+            else:
+                label = 'Verdadeiro'
+            return render_template("public/verify_signature.html",
+                                   label=label,
+                                   string='{} ({:.2f}%)'.format(label, probability * 100))
 
     return render_template("public/verify_signature.html")
 

@@ -1,11 +1,13 @@
 {% extends "base.html" %}
 {% block title %}Verify Signature{% endblock %}
 {% block content %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/verify_signature.css') }}">
 <div class="container">
     <div class="row">
         <div class="col">
 
             <h1>Verifique a autenticidade de uma assinatura</h1>
+            <h1>{{ probability }}</h1>
             <hr>
             <form action="/verify-signature" method="POST" enctype="multipart/form-data">
 
@@ -27,8 +29,14 @@
                 <br>
 
                 <button type="submit" class="btn btn-primary">Verificar</button>
-            </form>
 
+                <br>
+                {% if label == 'Verdadeiro' %}
+                <label>Predição: </label><label class="true_label">{{ string }}</label>
+                {% elif label == 'Falso' %}
+                <label>Predição: </label><label class="false_label">{{ string }}</label>
+                {% endif %}
+            </form>
         </div>
     </div>
 </div>

@@ -1,0 +1,9 @@
+.true_label {
+    color: green;
+    margin-left: 7px;
+}
+
+.false_label {
+    color: red;
+    margin-left: 7px;
+}
