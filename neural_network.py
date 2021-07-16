@@ -20,6 +20,9 @@ from pathlib import Path
 from models import TrainingSession
 from models import Metric
 
+import warnings
+warnings.filterwarnings('always')
+
 
 def run_neural_network(training_session: TrainingSession, qtd_batches=8, qtd_epochs=200):
     directory = training_session.directory
@@ -142,10 +145,10 @@ def run_neural_network(training_session: TrainingSession, qtd_batches=8, qtd_epo
 
     training_session.metric = Metric(accuracy=accuracy, loss=loss, precision=precision, recall=recall, f1_score=f1)
     # ---------------------------------------------------------------------------------------------------------
-    for i, pred in enumerate(predictions):
-        print('Falso: {:.2f} Original: {:.2f} ({})'.format(pred[0],
-                                                           pred[1],
-                                                           class_name_dict[test_y_non_categorical[i]]))
+    # for i, pred in enumerate(predictions):
+    #     print('Falso: {:.2f} Original: {:.2f} ({})'.format(pred[0],
+    #                                                        pred[1],
+    #                                                        class_name_dict[test_y_non_categorical[i]]))
 
     model.save(file_model_full_path)
 

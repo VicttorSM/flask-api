@@ -71,7 +71,12 @@ def upload_image():
             for false_signature in false_signatures:
                 false_signature.save(os.path.join(false_file_directory, false_signature.filename))
 
+            start_time = time()
             training_session = run_neural_network(training_session)
+            end_time = time()
+            delta_time = end_time - start_time
+            print('Treinamento durou {:.2f} segundos'.format(delta_time))
+
             print('Trying to update session')
             db.session.merge(training_session)
             db.session.commit()
@@ -131,6 +136,11 @@ def verify_signature():
                                    string='{} ({:.2f}%)'.format(label, probability * 100))
 
     return render_template("public/verify_signature.html")
+
+
+@app.route("/")
+def home():
+    return redirect("http://127.0.0.1:5000/upload-image", code=302)
 
 
 @app.route('/person', methods=['GET'])
